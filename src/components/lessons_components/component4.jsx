@@ -70,7 +70,7 @@ function Component4 () {
         <label htmlFor="result">Result</label>
         <input
           name="result"
-          value={action(state)}
+          value={action(state) || 0}
           type="number"
         />
       </div>

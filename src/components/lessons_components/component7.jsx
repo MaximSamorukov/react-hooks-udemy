@@ -24,7 +24,7 @@ function Component7 () {
     <Wrapper>
       <div>Lesson 7 useRef</div>
       <div>Renders: {count}</div>
-      <input ref={refContainer} defaultValue="20-th render" readOnly={true} />
+      <input ref={refContainer} defaultValue="5-th render" readOnly={true} />
       <button onClick={() => setCount(count + 1)}>Render</button>
     </Wrapper>
   )

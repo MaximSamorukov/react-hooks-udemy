@@ -3,7 +3,7 @@ import {
   Component1, Component2, Component3,
   Component4, Component5, Component6,
   Component7, Component8, Component9,
-  Component10, Component11,
+  Component10, Component11, Component12,
 } from './lessons_components';
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
       </div>
       <div>
         <Component11 />
+        <Component12 />
       </div>
     </div>
   );

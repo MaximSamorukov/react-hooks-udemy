@@ -4,7 +4,7 @@ import {
   Component4, Component5, Component6,
   Component7, Component8, Component9,
   Component10, Component11, Component12,
-  Component13,
+  Component13, Component14,
 } from './lessons_components';
 function App() {
   return (
@@ -27,6 +27,7 @@ function App() {
         <Component11 />
         <Component12 />
         <Component13 />
+        <Component14 />
       </div>
     </div>
   );

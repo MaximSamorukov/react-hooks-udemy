@@ -11,6 +11,7 @@ import Component10 from "./component10";
 import Component11 from "./component11/component11";
 import Component12 from "./component12";
 import Component13 from "./component13";
+import Component14 from "./component14";
 
 export {
   Component1,
@@ -26,4 +27,5 @@ export {
   Component11,
   Component12,
   Component13,
+  Component14,
 };

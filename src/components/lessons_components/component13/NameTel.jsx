@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useDebugValue } from "react";
 import { useSelect } from "./state-management/context";
 import { useContacts } from "./state-management/context";
 
@@ -8,6 +8,7 @@ function NameTel() {
   const [contacts] = useContacts();
   const [selectedId] = useSelect()
   const selectedItem = contacts.filter((i) => i.id === selectedId.id);
+  useDebugValue(selectedId);
   if (selectedItem.length) {
     name = selectedItem[0].name;
     tel = selectedItem[0].tel;

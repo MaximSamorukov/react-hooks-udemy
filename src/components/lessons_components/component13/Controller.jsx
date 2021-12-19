@@ -5,7 +5,7 @@ function Controller({ addContacts }) {
   const [, dispatch] = useContacts();
   return (
     <div>
-      <button onClick={addContacts}>ADD</button>
+      <button style={{ marginTop: 5 }} onClick={addContacts}>ADD</button>
       <button onClick={() => dispatch({ type: 'RESTORE'})}>RESTORE</button>
     </div>
   )

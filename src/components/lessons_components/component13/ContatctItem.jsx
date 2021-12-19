@@ -17,10 +17,17 @@ function ContactItem({ item }) {
       }}
       >
         <button
+          style={{
+            border: 0,
+            padding: 0,
+          }}
           onClick={() => dispatch({type: 'SELECT', payload:{ id: item.id }})}
           onDoubleClick={() => dispatchContacts({ type: 'DELETE', payload: { id: item.id }})}
         >
-          <img src={url} alt={item.name} />
+          <img
+            src={url}
+            alt={item.name}
+          />
         </button>
     </div>
   )

@@ -10,6 +10,7 @@ import Component9 from "./component9";
 import Component10 from "./component10";
 import Component11 from "./component11/component11";
 import Component12 from "./component12";
+import Component13 from "./component13";
 
 export {
   Component1,
@@ -24,4 +25,5 @@ export {
   Component10,
   Component11,
   Component12,
+  Component13,
 };

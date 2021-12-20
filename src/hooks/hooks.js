@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect, useRef, useEffect } from "react";
 
 function useCounter(initialValue = 0, delta = 1) {
   const [count, setCount] = useState(initialValue);
@@ -53,4 +53,33 @@ function useCharacterPosition(step, x, y) {
   return [ top, left ];
 }
 
-export { useCounter, useMargedState, useCharacterPosition };
+function useEventListener(eventName, eventHandler, target = window) {
+  const savedHandler = useRef();
+
+  useEffect(() => {
+    savedHandler.current = eventHandler;
+  }, [eventHandler]);
+
+  useEffect(() => {
+    const isSupported = target && target.addEventListener;
+    if (!isSupported) {
+      throw new Error('No method AddEventListener on target');
+    }
+
+    const eventListener = (event) => {
+      if (savedHandler.current) {
+        savedHandler.current(event);
+      }
+    }
+
+    target.addEventListener(eventName, eventListener);
+
+    return () => {
+      target.removeEventListener(eventName, eventListener);
+    }
+
+  }, [target, eventName]);
+
+}
+
+export { useCounter, useMargedState, useCharacterPosition, useEventListener };

@@ -19,7 +19,7 @@ function Component621 () {
       setCoords([]);
     }
   }, []);
-  useEventListener('mousemove', onMouseMove);
+  // useEventListener('mousemove', onMouseMove);
   useEventListener('keydown', onKeyDown);
   return (
     <Wrapper>

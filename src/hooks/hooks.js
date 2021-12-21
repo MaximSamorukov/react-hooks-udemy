@@ -82,4 +82,28 @@ function useEventListener(eventName, eventHandler, target = window) {
 
 }
 
-export { useCounter, useMargedState, useCharacterPosition, useEventListener };
+function useWhatCauseRender(name, props) {
+  const refProps = useRef({});
+  useEffect(() => {
+    const oldKeys = Object.keys(refProps.current);
+    const newKeys = Object.keys(props);
+    const keys = new Set([...oldKeys, ...newKeys]);
+    const results = [];
+    keys.forEach((key) => {
+      results.push({
+      key,
+      from: refProps.current[key],
+      to: props[key],
+      });
+    });
+    console.log(`Component ${name} renders because of`);
+    results.forEach((result) => {
+      if (result.from !== result.to) {
+        console.log(`${result.key}: from: ${result.from} to: ${result.to}`);
+      }
+    })
+    refProps.current = props;
+  });
+}
+
+export { useCounter, useMargedState, useCharacterPosition, useEventListener, useWhatCauseRender };

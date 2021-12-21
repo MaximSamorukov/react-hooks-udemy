@@ -6,17 +6,17 @@ import {
   Component7, Component8, Component9,
   Component10, Component11, Component12,
   Component13, Component14, Component620,
-  Component621,
+  Component621, Component622,
 } from './lessons_components';
 function App() {
   return (
     <>
       <nav style={{ margin: 10 }}>
-        <Link style={{ marginRight: 20 }} to="/lessons_1_5">Lessons 1 - 5</Link>
+        <Link style={{ marginRight: 20 }} to="/">Lessons 1 - 5</Link>
         <Link to="/lesson_6">Lesson 6</Link>
       </nav>
       <Routes>
-        <Route path="/lessons_1_5" element={(
+        <Route path="/" element={(
           <div className="app">
             <div>
               <Component1 />
@@ -45,6 +45,7 @@ function App() {
             <div>
               <Component620 />
               <Component621 />
+              <Component622 />
             </div>
           </div>
         )} />

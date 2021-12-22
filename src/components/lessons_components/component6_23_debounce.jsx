@@ -11,7 +11,7 @@ const Point = memo(({ style, point }) => {
 function Component623useDebounce () {
   const [origin , setOrigin] = useState({ x: 0, y: 0 });
   const [path, setPath] = useState([]);
-  const debValue = useDebounce(origin, 5);
+  const debValue = useDebounce(origin, 500);
   const keyPressHandler = useCallback((event) => {
     const { clientX, clientY } = event;
     setOrigin({ x: clientX, y: clientY });

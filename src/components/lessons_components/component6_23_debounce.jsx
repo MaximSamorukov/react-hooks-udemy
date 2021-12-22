@@ -2,18 +2,23 @@ import React, { useCallback, useState, useEffect, useRef, memo } from "react";
 import Wrapper from "./wrapper";
 import { useDebounce, useEventListener } from '../../hooks/hooks';
 
+const Point = memo(({ style, point }) => {
+  return (
+    <div style={{...style, backgroundColor: 'green', top: `${point.y}px`, left: `${point.x}px` }}></div>
+  )
+});
 
 function Component623useDebounce () {
   const [origin , setOrigin] = useState({ x: 0, y: 0 });
-  const [value, setValue] = useState([]);
-  const debValue = useDebounce(origin, 15);
+  const [path, setPath] = useState([]);
+  const debValue = useDebounce(origin, 5);
   const keyPressHandler = useCallback((event) => {
     const { clientX, clientY } = event;
     setOrigin({ x: clientX, y: clientY });
-  });
+  }, []);
 
   useEffect(() => {
-    setValue((prev) => [...prev, {
+    setPath((prev) => [...prev, {
       x: debValue.x,
       y: debValue.y,
     }]);
@@ -29,8 +34,8 @@ function Component623useDebounce () {
   return (
     <Wrapper>
       <div>useDebounce</div>
-      {value.map((i) => (
-        <div style={{...style, backgroundColor: 'green', top: `${i.y}px`, left: `${i.x}px` }}></div>
+      {path.map((i) => (
+        <Point style={style} point={i} />
       ))}
 
     </Wrapper>

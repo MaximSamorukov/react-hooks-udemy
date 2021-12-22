@@ -15,6 +15,7 @@ import Component14 from "./component14";
 import Component620 from "./component6_20";
 import Component621 from "./component6_21";
 import Component622 from "./component6_22";
+import Component623useDebounce from "./component6_23_debounce";
 export {
   Component1,
   Component2,
@@ -33,4 +34,5 @@ export {
   Component620,
   Component621,
   Component622,
+  Component623useDebounce,
 };

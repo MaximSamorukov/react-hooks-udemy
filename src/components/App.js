@@ -6,7 +6,7 @@ import {
   Component7, Component8, Component9,
   Component10, Component11, Component12,
   Component13, Component14, Component620,
-  Component621, Component622,
+  Component621, Component622, Component623useDebounce,
 } from './lessons_components';
 function App() {
   return (
@@ -46,6 +46,7 @@ function App() {
               <Component620 />
               <Component621 />
               <Component622 />
+              <Component623useDebounce />
             </div>
           </div>
         )} />

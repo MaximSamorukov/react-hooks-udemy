@@ -106,4 +106,17 @@ function useWhatCauseRender(name, props) {
   });
 }
 
-export { useCounter, useMargedState, useCharacterPosition, useEventListener, useWhatCauseRender };
+function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+    return () => {
+      clearTimeout(timeout);
+    }
+  }, [value, delay]);
+  return debouncedValue;
+}
+
+export { useCounter, useMargedState, useCharacterPosition, useEventListener, useWhatCauseRender, useDebounce };

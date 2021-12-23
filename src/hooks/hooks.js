@@ -119,4 +119,21 @@ function useDebounce(value, delay) {
   return debouncedValue;
 }
 
-export { useCounter, useMargedState, useCharacterPosition, useEventListener, useWhatCauseRender, useDebounce };
+function useThrottle(value, period) {
+  const [throttledValue, setThrottledValue] = useState(value);
+  const valueRef = useRef(value);
+  useEffect(() => {
+    valueRef.current = value
+  }, [value]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setThrottledValue(valueRef.current);
+    }, period);
+    return () => {
+      clearInterval(interval);
+    }
+  }, []);
+  return throttledValue;
+}
+
+export { useCounter, useMargedState, useCharacterPosition, useEventListener, useWhatCauseRender, useDebounce, useThrottle };

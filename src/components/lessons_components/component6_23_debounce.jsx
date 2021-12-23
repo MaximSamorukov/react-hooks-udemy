@@ -23,7 +23,7 @@ function Component623useDebounce () {
       y: debValue.y,
     }]);
   }, [debValue]);
-  useEventListener('mousemove', keyPressHandler);
+  //useEventListener('mousemove', keyPressHandler);
   const style = {
     width: 10,
     height: 10,

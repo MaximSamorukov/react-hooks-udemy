@@ -14,6 +14,7 @@ function Item({ number, active, setActive, disabled }) {
     textAlign: 'center',
     lineHeight: active ? '23px' : '21px',
     transition: 'all linear 100ms',
+    opacity: disabled ? 0.7 : 1,
   }
 
   return (
@@ -28,6 +29,21 @@ function Item({ number, active, setActive, disabled }) {
   )
 }
 
+function Row ({ numbers, activeNumber, setActiveNumber, disabled = false }) {
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      marginTop: 20,
+    }}>
+      {numbers.map((_, i) => (
+        <Item number={i} active={i === activeNumber} setActive={setActiveNumber} disabled={disabled} />
+      ))}
+    </div>
+  )
+}
+
 function Component627 () {
   const [activeNumber, setActiveNumber] = useState(null);
   const previous = usePrevious(activeNumber);
@@ -35,27 +51,8 @@ function Component627 () {
   return (
     <Wrapper>
       <div>usePrevious</div>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 20,
-      }}>
-        {numbers.map((_, i) => (
-          <Item number={i} active={i === activeNumber} setActive={setActiveNumber} />
-        ))}
-      </div>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 20,
-      }}>
-        {numbers.map((_, i) => (
-          <Item number={i} active={i === previous} setActive={setActiveNumber} disabled />
-        ))}
-      </div>
-
+      <Row numbers={numbers} activeNumber={activeNumber} setActiveNumber={setActiveNumber} />
+      <Row numbers={numbers} activeNumber={previous} setActiveNumber={setActiveNumber} disabled />
     </Wrapper>
   );
 }

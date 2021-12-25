@@ -136,4 +136,52 @@ function useThrottle(value, period) {
   return throttledValue;
 }
 
-export { useCounter, useMargedState, useCharacterPosition, useEventListener, useWhatCauseRender, useDebounce, useThrottle };
+function isFunction (item) {
+  const result = typeof item === 'function';
+  return result;
+}
+
+function useLocalStorage(key, initialValue) {
+  const [storedValue, setStoredValue] = useState(() => {
+    try {
+      const item = window.localStorage.getItem(key);
+      if (item) {
+        return JSON.parse(item);
+      }
+      const value = isFunction(initialValue) ? initialValue() : initialValue;
+      window.localStorage.setItem(key, JSON.stringify(value));
+      return value;
+    }
+    catch(error) {
+      console.log(error.message);
+      return initialValue;
+    }
+  });
+
+  const setValue = (newValue) => {
+    try {
+      if (isFunction(newValue)) {
+        window.localStorage.setItem(key, JSON.stringify(newValue(storedValue)));
+        setStoredValue(newValue(storedValue));
+        return;
+      }
+      window.localStorage.setItem(key, JSON.stringify(newValue));
+      setStoredValue(newValue);
+      return;
+    } catch(error) {
+      console.error(error.message);
+    }
+  }
+  return [storedValue, setValue];
+}
+
+export {
+  useCounter,
+  useMargedState,
+  useCharacterPosition,
+  useEventListener,
+  useWhatCauseRender,
+  useDebounce,
+  useThrottle,
+  useLocalStorage,
+};

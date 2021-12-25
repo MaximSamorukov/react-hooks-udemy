@@ -28,7 +28,7 @@ function Component623useThrottle () {
   useEffect(() => {
     setThrottledValues((prev) => [...prev, throttValue])
   }, [throttValue]);
-  useEventListener('mousemove', mouseMoveHandler);
+  //useEventListener('mousemove', mouseMoveHandler);
 
   return (
     <Wrapper>

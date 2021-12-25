@@ -7,7 +7,7 @@ import {
   Component10, Component11, Component12,
   Component13, Component14, Component620,
   Component621, Component622, Component623useDebounce,
-  Component623useThrottle,
+  Component623useThrottle, Component624,
 } from './lessons_components';
 function App() {
   return (
@@ -49,6 +49,9 @@ function App() {
               <Component622 />
               <Component623useDebounce />
               <Component623useThrottle />
+            </div>
+            <div>
+              <Component624 />
             </div>
           </div>
         )} />

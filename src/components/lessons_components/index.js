@@ -21,6 +21,7 @@ import Component624 from "./component6_24";
 import Component625 from "./component6_25";
 import Component626 from "./component6_26";
 import Component627 from "./component6_27";
+import Component628 from "./component6_28";
 
 export {
   Component1,
@@ -46,4 +47,5 @@ export {
   Component625,
   Component626,
   Component627,
+  Component628,
 };

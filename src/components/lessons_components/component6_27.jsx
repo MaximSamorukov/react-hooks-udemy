@@ -29,13 +29,15 @@ function Item({ number, active, setActive, disabled }) {
   )
 }
 
-function Row ({ numbers, activeNumber, setActiveNumber, disabled = false }) {
+export function Row ({ numbers, activeNumber, setActiveNumber, disabled = false, btn = 0, top = 20 }) {
   return (
     <div style={{
+
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-around',
-      marginTop: 20,
+      marginTop: top,
+      marginBottom: btn,
     }}>
       {numbers.map((_, i) => (
         <Item number={i} active={i === activeNumber} setActive={setActiveNumber} disabled={disabled} />

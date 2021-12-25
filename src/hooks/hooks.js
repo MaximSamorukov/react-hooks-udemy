@@ -264,6 +264,26 @@ function usePrevious(state) {
   return currentState.current;
 }
 
+function useHistory(value) {
+  const [values, setValues] = useState([]);
+
+  const deleteLast = () => {
+    setValues((prev) => {
+      if(prev.length > 1) {
+        const array = prev.slice(0 , -1);
+        return array;
+      }
+      return prev;
+    });
+
+  }
+
+  useEffect(() => {
+    setValues((prev) => [...prev, value]);
+  }, [value]);
+  return { values, deleteLast };
+}
+
 export {
   useCounter,
   useMargedState,
@@ -278,4 +298,5 @@ export {
   useAsync,
   useAnimateText,
   usePrevious,
+  useHistory,
 };

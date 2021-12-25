@@ -190,6 +190,70 @@ function useWindowSize() {
   return size;
 }
 
+function asyncFunction(timeout) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const number = Math.random() * 100;
+      if (number >= 50) {
+        resolve(number);
+      } else {
+        reject('Try one more time...');
+      }
+    }, timeout);
+  });
+}
+
+const STATUS = {
+  IDLE: 'idle',
+  PENDING: 'pending',
+  SUCCESS: 'success',
+  ERROR: 'error',
+}
+
+function useAsync(asyncFunc) {
+  const [result, setResult] = useState();
+  const [status, setStatus] = useState();
+  const [error, setError] = useState();
+
+  const run = useCallback(() => {
+    if (status === STATUS.PENDING) {
+      console.error('Work in progress...');
+      return;
+    }
+    setStatus(STATUS.PENDING);
+    asyncFunc()
+      .then((result) => {
+        setStatus(STATUS.SUCCESS);
+        setResult(result);
+        setError(null);
+      })
+      .catch((error) => {
+        setStatus(STATUS.ERROR);
+        setResult('no result');
+        setError(error);
+      });
+  }, [status, asyncFunc]);
+  return { run, result, status, error };
+};
+
+function useAnimateText(text, delay) {
+  const [number, setNumber] = useState(0);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setNumber((prev) => {
+        if (prev === text.length - 1) {
+          setNumber(0);
+          return;
+        }
+        setNumber(prev + 1);
+      });
+    }, delay);
+    return () => {
+      clearInterval(intervalId);
+    }
+  }, [text, delay]);
+  return text.substring(0, number);
+}
 export {
   useCounter,
   useMargedState,
@@ -200,4 +264,7 @@ export {
   useThrottle,
   useLocalStorage,
   useWindowSize,
+  asyncFunction,
+  useAsync,
+  useAnimateText,
 };

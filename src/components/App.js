@@ -8,6 +8,7 @@ import {
   Component13, Component14, Component620,
   Component621, Component622, Component623useDebounce,
   Component623useThrottle, Component624, Component625,
+  Component626,
 } from './lessons_components';
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
             <div>
               <Component624 />
               <Component625 />
+              <Component626 />
             </div>
           </div>
         )} />

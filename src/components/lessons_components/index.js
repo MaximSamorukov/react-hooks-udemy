@@ -19,6 +19,7 @@ import Component623useDebounce from "./component6_23_debounce";
 import Component623useThrottle from "./component6_23_throttle";
 import Component624 from "./component6_24";
 import Component625 from "./component6_25";
+import Component626 from "./component6_26";
 
 export {
   Component1,
@@ -42,4 +43,5 @@ export {
   Component623useThrottle,
   Component624,
   Component625,
+  Component626,
 };

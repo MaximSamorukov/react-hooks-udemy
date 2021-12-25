@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef, useEffect } from "react";
+import React, { useState, useLayoutEffect, useRef, useEffect, useCallback } from "react";
 
 function useCounter(initialValue = 0, delta = 1) {
   const [count, setCount] = useState(initialValue);
@@ -175,6 +175,21 @@ function useLocalStorage(key, initialValue) {
   return [storedValue, setValue];
 }
 
+const INIT_WINDOW_SIZE = [0, 0];
+
+function useWindowSize() {
+  const [size, setSize] = useState(INIT_WINDOW_SIZE);
+  useEffect(() => {
+    const {innerWidth, innerHeight} = window;
+    setSize([innerWidth, innerHeight]);
+  }, []);
+  useEventListener('resize', useCallback((event) => {
+    const {innerWidth, innerHeight} = event.target;
+    setSize([innerWidth, innerHeight]);
+  }, []))
+  return size;
+}
+
 export {
   useCounter,
   useMargedState,
@@ -184,4 +199,5 @@ export {
   useDebounce,
   useThrottle,
   useLocalStorage,
+  useWindowSize,
 };

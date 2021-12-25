@@ -254,6 +254,16 @@ function useAnimateText(text, delay) {
   }, [text, delay]);
   return text.substring(0, number);
 }
+
+function usePrevious(state) {
+  const currentState = useRef(state);
+
+  useEffect(() => {
+    currentState.current = state;
+  }, [state]);
+  return currentState.current;
+}
+
 export {
   useCounter,
   useMargedState,
@@ -267,4 +277,5 @@ export {
   asyncFunction,
   useAsync,
   useAnimateText,
+  usePrevious,
 };

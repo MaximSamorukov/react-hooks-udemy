@@ -284,6 +284,35 @@ function useHistory(value) {
   return { values, deleteLast };
 }
 
+const DEFAULT_SIZE = {
+  width: 0,
+  height: 0,
+};
+
+function useElementSize(element) {
+  const [size, setSize] = useState(DEFAULT_SIZE);
+
+  const updateElementSize = useCallback(() => {
+    const node = element.current;
+    if (node) {
+      const { width, height } = node.getBoundingClientRect();
+      setSize({
+        width: Math.ceil(width),
+        height: Math.ceil(height),
+      });
+    }
+  }, [element]);
+
+  useEffect(() => {
+    updateElementSize();
+  }, [updateElementSize]);
+
+  useEventListener('resize', updateElementSize);
+
+
+  return size;
+}
+
 export {
   useCounter,
   useMargedState,
@@ -299,4 +328,5 @@ export {
   useAnimateText,
   usePrevious,
   useHistory,
+  useElementSize,
 };

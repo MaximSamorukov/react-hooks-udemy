@@ -313,6 +313,40 @@ function useElementSize(element) {
   return size;
 }
 
+function useInterval(callback, delay) {
+  const callbackRef = useRef(callback);
+  const [trigger, setTrigger] = useState({});
+  const [status, setStatus] = useState('stop');
+  const [intervalHandler, setIntervalHandler] = useState();
+  useEffect(() => {
+    callbackRef.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (callbackRef.current && status === 'in progress') {
+        callbackRef.current();
+      }
+    }, delay);
+
+    setIntervalHandler(interval);
+
+    return () => {
+      clearInterval(interval);
+    }
+  }, [callbackRef, delay, trigger, status]);
+
+  const stop = () => {
+    setStatus('stop');
+    clearInterval(intervalHandler);
+  };
+  const start = () => {
+    setStatus('in progress');
+    setTrigger({});
+  };
+  return { start, stop };
+}
+
 export {
   useCounter,
   useMargedState,
@@ -329,4 +363,5 @@ export {
   usePrevious,
   useHistory,
   useElementSize,
+  useInterval,
 };

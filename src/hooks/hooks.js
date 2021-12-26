@@ -348,6 +348,39 @@ function useInterval(callback, delay) {
   return { start, stop };
 }
 
+function useTimeout(callback, delay) {
+  const callbackRef = useRef(callback);
+  const [status, setStatus] = useState('idle');
+  const [trigger, setTrigger] = useState({});
+  const [intervalHandler, setIntervalHandler] = useState(null);
+  useEffect(() => {
+    callbackRef.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    const interval = setTimeout(() => {
+      setIntervalHandler(null);
+      if (callbackRef.current && status === 'in process') {
+        setStatus('idle');
+        callbackRef.current();
+      }
+    }, delay);
+
+    setIntervalHandler(interval);
+
+    return () => {
+      clearInterval(interval);
+    }
+  }, [delay, trigger]);
+
+  const start = () => {
+    setStatus('in process');
+    setTrigger({});
+  };
+
+  return { status, start };
+}
+
 export {
   useCounter,
   useMargedState,
@@ -365,4 +398,5 @@ export {
   useHistory,
   useElementSize,
   useInterval,
+  useTimeout,
 };

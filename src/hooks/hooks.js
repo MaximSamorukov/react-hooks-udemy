@@ -317,7 +317,7 @@ function useInterval(callback, delay) {
   const callbackRef = useRef(callback);
   const [trigger, setTrigger] = useState({});
   const [status, setStatus] = useState('stop');
-  const [intervalHandler, setIntervalHandler] = useState();
+  const [intervalHandler, setIntervalHandler] = useState(null);
   useEffect(() => {
     callbackRef.current = callback;
   }, [callback]);
@@ -339,6 +339,7 @@ function useInterval(callback, delay) {
   const stop = () => {
     setStatus('stop');
     clearInterval(intervalHandler);
+    setIntervalHandler(null);
   };
   const start = () => {
     setStatus('in progress');

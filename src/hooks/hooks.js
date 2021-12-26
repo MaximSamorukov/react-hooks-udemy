@@ -392,6 +392,34 @@ function useMountedRef() {
   return isMounted;
 }
 
+function useHovered() {
+  const ref = useRef();
+  const [ isHovered, setIsHovered ] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+
+    const handleMouseOver = () => setIsHovered(true);
+    const handleMouseOut = () => setIsHovered(false);
+
+    if (!node) {
+      return;
+    }
+    if (node) {
+      node.addEventListener('mouseover', handleMouseOver);
+      node.addEventListener('mouseout', handleMouseOut);
+    }
+    return () => {
+      node.removeEventListener('mouseover', handleMouseOver);
+      node.removeEventListener('mouseout', handleMouseOut);
+    }
+  }, [ref]);
+
+  return {
+    ref, isHovered,
+  }
+}
+
 export {
   useCounter,
   useMargedState,
@@ -411,4 +439,5 @@ export {
   useInterval,
   useTimeout,
   useMountedRef,
+  useHovered,
 };

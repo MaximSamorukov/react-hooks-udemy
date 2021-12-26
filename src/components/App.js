@@ -9,7 +9,7 @@ import {
   Component621, Component622, Component623useDebounce,
   Component623useThrottle, Component624, Component625,
   Component626, Component627, Component628, Component629,
-  Component630, Component631,
+  Component630, Component631, Component632,
 } from './lessons_components';
 function App() {
   return (
@@ -63,6 +63,7 @@ function App() {
               <Component629 />
               <Component630 />
               <Component631 />
+              <Component632 />
             </div>
           </div>
         )} />

@@ -381,6 +381,17 @@ function useTimeout(callback, delay) {
   return { status, start };
 }
 
+function useMountedRef() {
+  const isMounted = useRef(true);
+  useEffect(() => {
+    const beforeUnmount = () => {
+      isMounted.current = false;
+    };
+    return beforeUnmount;
+  }, []);
+  return isMounted;
+}
+
 export {
   useCounter,
   useMargedState,
@@ -399,4 +410,5 @@ export {
   useElementSize,
   useInterval,
   useTimeout,
+  useMountedRef,
 };

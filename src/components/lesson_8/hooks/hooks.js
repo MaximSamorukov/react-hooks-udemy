@@ -9,3 +9,13 @@ export function useUser() {
   }
   return user;
 }
+
+export function useUsersList() {
+  const [listId, setListId] = useState(0);
+  const list = {
+    listId,
+    getList: () => console.log('get list'),
+    setListId,
+  }
+  return list;
+}

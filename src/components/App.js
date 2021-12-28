@@ -11,12 +11,15 @@ import {
   Component626, Component627, Component628, Component629,
   Component630, Component631, Component632, Component633,
 } from './lessons_components';
+import MainComponent from "./lesson_8/components/MainLayout";
+
 function App() {
   return (
     <>
       <nav style={{ margin: 10 }}>
         <Link style={{ marginRight: 20 }} to="/">Lessons 1 - 5</Link>
-        <Link to="/lesson_6">Lesson 6</Link>
+        <Link style={{ marginRight: 20 }} to="/lesson_6">Lesson 6</Link>
+        <Link to="/lesson_8">Lesson 8</Link>
       </nav>
       <Routes>
         <Route path="/" element={(
@@ -65,6 +68,15 @@ function App() {
               <Component631 />
               <Component632 />
               <Component633 />
+            </div>
+          </div>
+        )} />
+        <Route path="/lesson_8" element={(
+          <div className="app">
+            <div>
+              <MainComponent>
+                Some info
+              </MainComponent>
             </div>
           </div>
         )} />

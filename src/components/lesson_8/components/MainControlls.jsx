@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useUsersContext, useUsersListContext, useUserContext } from '../context/context';
+import { useUsersContext, useUserContext } from '../context/context';
 
 export function Controlls() {
   const { userId, setUserId } = useUserContext();
@@ -13,8 +13,7 @@ export function Controlls() {
       const currIndex = data.findIndex((item) => item.id === curntId);
       setCurrentIndex(currIndex);
     }
-
-  }, [data])
+  }, [userId, data])
   const length = data?.length;
   const setNext = () => {
     const nextIndex = currentIndex === length - 1 ? 0 : currentIndex + 1;

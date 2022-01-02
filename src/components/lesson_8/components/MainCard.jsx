@@ -1,10 +1,10 @@
 import React from "react";
-import { useUsersContext, useUsersListContext, useUserContext } from '../context/context';
+import { useUserContext } from '../context/context';
 
 const Link = ({ id }) => {
   if (id.website) {
     return (
-      <a href={`https://${id?.website}`}>{id?.website}ff</a>
+      <a href={`https://${id?.website}`}>{id?.website}</a>
     );
   };
   return 'no website';

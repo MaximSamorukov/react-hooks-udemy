@@ -6,7 +6,6 @@ export function useUsers() {
 
   const [ userData, setData ] = useState(undefined);
   const [ userError, setError ] = useState(undefined);
-  const [ loading, setLoading ] = useState(undefined);
 
   useEffect(() => {
     fetch('users').get()
@@ -18,16 +17,9 @@ export function useUsers() {
       });
   }, [])
 
-  useEffect(() => {
-    const value = !userData && !userError;
-    setLoading(value);
-
-  }, [userData, userError])
-
-
   return {
     data: userData,
-    loading,
+    loading: !userData && !userError,
     error: userError,
   };
 }

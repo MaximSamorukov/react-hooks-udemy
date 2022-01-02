@@ -25,8 +25,8 @@ export function UsersList() {
       }}
     >
       {loading && <h3>Downloading...</h3>}
-      {data?.length && data.map(({ title, completed }, index ) => (
-        <TodoItem id={index} title={title} completed={completed} />
+      {data?.length && data.map(({ id, title, completed }, index ) => (
+        <TodoItem key={id} id={index} title={title} completed={completed} />
       ))}
     </div>
   )

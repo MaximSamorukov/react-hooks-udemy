@@ -1,9 +1,16 @@
 import React from "react";
 import { useUsersContext, useUsersListContext, useUserContext } from '../context/context';
 
+const Link = ({ id }) => {
+  if (id.website) {
+    return (
+      <a href={`https://${id?.website}`}>{id?.website}ff</a>
+    );
+  };
+  return 'no website';
+}
 export function UserCard() {
   const { userId } =useUserContext();
-
   return (
     <div
       style={{
@@ -19,7 +26,7 @@ export function UserCard() {
       <p>{`Username: ${userId?.username || 'no username'}`}</p>
       <p>{`Email: ${userId?.email || 'no email'}`}</p>
       <p>{`Phone: ${userId?.phone || 'no phone'}`}</p>
-      <p>{`Website: ${userId?.website || 'no website'}`}</p>
+      <p>Website: <Link id={userId} /></p>
       <p>{`City: ${userId?.address?.city || 'no address'}`}</p>
       <p>{`Company: ${userId?.company?.name || 'no company name'}`}</p>
 

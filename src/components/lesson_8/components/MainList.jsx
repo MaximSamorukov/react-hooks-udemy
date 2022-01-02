@@ -12,9 +12,6 @@ export function UsersList() {
     }
   }, [userId, setId])
 
-  console.log(userId);
-  console.log(data);
-
   return (
     <div
       style={{
@@ -28,8 +25,8 @@ export function UsersList() {
       }}
     >
       {loading && <h3>Downloading...</h3>}
-      {data?.length && data.map(({ id, title, completed }) => (
-        <TodoItem id={id} title={title} completed={completed} />
+      {data?.length && data.map(({ title, completed }, index ) => (
+        <TodoItem id={index} title={title} completed={completed} />
       ))}
     </div>
   )

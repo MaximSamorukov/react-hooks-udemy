@@ -1,6 +1,7 @@
 import React from "react";
 
 export function TodoItem({ id, title, completed }) {
+  const index = id === 0 ? 1 : id ? id + 1 : 'no id';
   return (
     <div
       style={{
@@ -13,7 +14,7 @@ export function TodoItem({ id, title, completed }) {
         marginTop: '3px',
       }}
     >
-      <p>{`id: ${id || 'no id'}`}</p>
+      <p>{`# ${index}`}</p>
       <p>{`title: ${title || 'no title'}`}</p>
       <p>{`completed: ${completed ? 'true' : 'false'}`}</p>
     </div>

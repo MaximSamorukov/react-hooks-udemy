@@ -16,7 +16,7 @@ export function TodoItem({ id, title, completed }) {
     >
       <p>{`# ${index}`}</p>
       <p>{`title: ${title || 'no title'}`}</p>
-      <p>{`completed: ${completed ? 'true' : 'false'}`}</p>
+      <p>{`completed: ${completed ? true : false}`}</p>
     </div>
   )
 }

@@ -1,0 +1,58 @@
+import React, { useEffect, useState } from "react";
+import { useUsersContext, useUsersListContext, useUserContext } from '../context/context';
+
+export function Controlls() {
+  const { userId, setUserId } = useUserContext();
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const { data } = useUsersContext();
+
+  useEffect(() => {
+    if (data?.length) {
+      const curntId = userId.id;
+      const currIndex = data.findIndex((item) => item.id === curntId);
+      setCurrentIndex(currIndex);
+    }
+
+  }, [data])
+  const length = data?.length;
+  const setNext = () => {
+    const nextIndex = currentIndex === length - 1 ? 0 : currentIndex + 1;
+    setCurrentIndex(nextIndex);
+    setUserId(data[nextIndex]);
+  }
+  const setPrev = () => {
+    const prevIndex = currentIndex === 0 ? length - 1 : currentIndex - 1;
+    setCurrentIndex(prevIndex);
+    setUserId(data[prevIndex]);
+  }
+  return (
+    <div
+      style={{
+        border: '3px dashed black',
+        width: '100%',
+        height: '30px',
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        marginTop: '5px',
+        paddingTop: '3px',
+        boxSizing: 'border-box',
+      }}
+    >
+      <div
+        style={{
+          cursor: 'pointer',
+        }}
+        onClick={() => setPrev()}
+      >PREV</div>
+      <div
+        style={{
+          marginLeft: '40px',
+          cursor: 'pointer',
+        }}
+        onClick={() => setNext()}
+      >NEXT</div>
+    </div>
+  )
+}

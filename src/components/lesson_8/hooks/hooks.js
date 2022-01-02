@@ -1,21 +1,64 @@
 import { useState } from "react";
+import { useEffect } from "react/cjs/react.development";
+import { fetch } from "../../../api/api";
 
-export function useUser() {
-  const [id, setId] = useState(0);
-  const user = {
-    id,
-    getUser: () => console.log('get user'),
-    setId,
-  }
-  return user;
+export function useUsers() {
+
+  const [ userData, setData ] = useState(undefined);
+  const [ userError, setError ] = useState(undefined);
+  const [ loading, setLoading ] = useState(undefined);
+
+  useEffect(() => {
+    fetch('users').get()
+      .then(({ data }) => {
+        setData(data)
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  }, [])
+
+  useEffect(() => {
+    const value = !userData && !userError;
+    setLoading(value);
+
+  }, [userData, userError])
+
+
+  return {
+    data: userData,
+    loading,
+    error: userError,
+  };
 }
 
 export function useUsersList() {
-  const [listId, setListId] = useState(0);
-  const list = {
-    listId,
-    getList: () => console.log('get list'),
-    setListId,
+  const [ todoData, setData ] = useState(undefined);
+  const [id, setId] = useState(undefined);
+  const [ todoError, setError ] = useState(undefined);
+
+  useEffect(() => {
+    if (id) {
+      fetch(`todos?userId=${id}`).get()
+        .then(({ data }) => {
+          setData(data)
+        })
+        .catch((error) => {
+          setError(error);
+        });
+    }
+  }, [id])
+  const todos = {
+    data: todoData,
+    error: todoError,
+    loading: !todoError && !todoData,
+    setId,
   }
-  return list;
+  return todos;
+}
+
+export function useUser() {
+  const [userId, setUserId] = useState({});
+
+  return [ userId, setUserId];
 }

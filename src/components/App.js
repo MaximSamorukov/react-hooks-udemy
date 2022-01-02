@@ -73,7 +73,13 @@ function App() {
         )} />
         <Route path="/lesson_8" element={(
           <div className="app">
-            <div>
+            <div
+              style={{
+                width: '100%',
+                marginRight: '10px',
+                marginLeft: '10px',
+              }}
+            >
               <MainComponent>
                 Some info
               </MainComponent>

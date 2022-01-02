@@ -12,6 +12,7 @@ import {
   Component630, Component631, Component632, Component633,
 } from './lessons_components';
 import MainComponent from "./lesson_8/components/MainLayout";
+import MainComponentSWR from "./lesson_8_swr/components/MainLayout";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
       <nav style={{ margin: 10 }}>
         <Link style={{ marginRight: 20 }} to="/">Lessons 1 - 5</Link>
         <Link style={{ marginRight: 20 }} to="/lesson_6">Lesson 6</Link>
-        <Link to="/lesson_8">Lesson 8</Link>
+        <Link style={{ marginRight: 20 }} to="/lesson_8">Lesson 8</Link>
+        <Link to="/lesson_8_swr">Lesson 8 SWR</Link>
       </nav>
       <Routes>
         <Route path="/" element={(
@@ -80,9 +82,20 @@ function App() {
                 marginLeft: '10px',
               }}
             >
-              <MainComponent>
-                Some info
-              </MainComponent>
+              <MainComponent />
+            </div>
+          </div>
+        )} />
+        <Route path="/lesson_8_swr" element={(
+          <div className="app">
+            <div
+              style={{
+                width: '100%',
+                marginRight: '10px',
+                marginLeft: '10px',
+              }}
+            >
+              <MainComponentSWR />
             </div>
           </div>
         )} />

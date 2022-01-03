@@ -8,4 +8,10 @@ function fetch(target) {
   return instance;
 }
 
-export { fetch };
+function fetcher(target) {
+  const url = `${URL}/${target}`;
+  const result = axios.get(url);
+  return result;
+}
+
+export { fetch, fetcher };

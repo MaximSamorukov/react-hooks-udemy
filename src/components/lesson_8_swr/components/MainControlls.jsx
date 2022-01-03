@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useUsersContext, useUserContext } from '../context/context';
+import { useGetUserSWR } from "../hooks/hooks";
 
 export function Controlls() {
   const { userId, setUserId } = useUserContext();
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  const { dataSWR } = useGetUserSWR(userId.id);
   const { data } = useUsersContext();
-
+  console.log('SWR', dataSWR?.data[0]);
   useEffect(() => {
     if (data?.length) {
       const curntId = userId.id;

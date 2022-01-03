@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react/cjs/react.development";
-import { fetch } from "components/lesson_8_swr/api/api";
+import { fetch, fetcher } from "components/lesson_8_swr/api/api";
+import useSWR from "swr";
 
 export function useUsers() {
 
@@ -21,6 +22,39 @@ export function useUsers() {
     data: userData,
     loading: !userData && !userError,
     error: userError,
+  };
+}
+
+export function useGetUser(id) {
+
+  const [ userData, setData ] = useState(undefined);
+  const [ userError, setError ] = useState(undefined);
+
+  useEffect(() => {
+    fetch(`users?id=${id}`).get()
+      .then(({ data }) => {
+        setData(data)
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  }, [])
+
+  return {
+    data: userData,
+    loading: !userData && !userError,
+    error: userError,
+  };
+}
+
+export function useGetUserSWR(id) {
+
+  const { data, error } = useSWR(`users?id=${id}`, fetcher);
+
+  return {
+    dataSWR: data,
+    loading: !data && !error,
+    error,
   };
 }
 

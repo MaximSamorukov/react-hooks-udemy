@@ -1,5 +1,6 @@
 import React from "react";
 import { useUserContext } from '../context/context';
+import { Address, Company, Email, Name, Phone, Website } from './subcomponents';
 
 const Link = ({ id }) => {
   if (id.website) {
@@ -16,21 +17,21 @@ export function UserCard() {
       style={{
         border: '3px dashed black',
         width: '100%',
-        height: '300px',
+        height: 'fit-content',
         padding: '3px',
         boxSizing: 'border-box',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
       }}
     >
-      <p>{`id: ${userId?.id || 'no id'}`}</p>
-      <p>{`Name: ${userId?.name || 'no name'}`}</p>
-      <p>{`Username: ${userId?.username || 'no username'}`}</p>
-      <p>{`Email: ${userId?.email || 'no email'}`}</p>
-      <p>{`Phone: ${userId?.phone || 'no phone'}`}</p>
-      <p>Website: <Link id={userId} /></p>
-      <p>{`City: ${userId?.address?.city || 'no address'}`}</p>
-      <p>{`Company: ${userId?.company?.name || 'no company name'}`}</p>
-
-
+      <Name />
+      <Email />
+      <Phone />
+      <Website />
+      <Address />
+      <Company />
     </div>
   )
 }

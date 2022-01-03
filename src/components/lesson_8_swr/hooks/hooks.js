@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react/cjs/react.development";
-import { fetch } from "../../../api/api";
+import { fetch } from "components/lesson_8_swr/api/api";
 
 export function useUsers() {
 

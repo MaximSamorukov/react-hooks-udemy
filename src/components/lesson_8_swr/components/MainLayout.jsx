@@ -9,7 +9,7 @@ const MainComponentSWR = ({ children }) => {
     <UserContextProvider>
       <UserCard />
       <Controlls />
-      <UsersList />
+      {/* <UsersList /> */}
     </UserContextProvider>
   );
 }

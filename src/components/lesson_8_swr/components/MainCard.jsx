@@ -1,17 +1,7 @@
 import React from "react";
-import { useUserContext } from '../context/context';
 import { Address, Company, Email, Name, Phone, Website } from './subcomponents';
 
-const Link = ({ id }) => {
-  if (id.website) {
-    return (
-      <a href={`https://${id?.website}`}>{id?.website}</a>
-    );
-  };
-  return 'no website';
-}
 export function UserCard() {
-  const { userId } =useUserContext();
   return (
     <div
       style={{
@@ -21,17 +11,39 @@ export function UserCard() {
         padding: '3px',
         boxSizing: 'border-box',
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
       }}
     >
-      <Name />
-      <Email />
-      <Phone />
-      <Website />
-      <Address />
-      <Company />
+      <div
+        style={{
+          width: '50%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-start',
+          alignItems: 'flex-start',
+        }}
+      >
+        <Name />
+        <Email />
+        <Phone />
+        <Website />
+        <Company />
+      </div>
+      <div
+        style={{
+          width: '50%',
+          display: 'flex',
+          flexDirection: 'column',
+          marginLeft: '2px',
+          height: '100%',
+          minHeight: '100%',
+
+        }}
+      >
+        <Address />
+      </div>
     </div>
   )
 }

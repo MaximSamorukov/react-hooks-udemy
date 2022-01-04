@@ -1,19 +1,25 @@
 import React from 'react';
-import { style } from './style';
+import { style, firstColumn } from './style';
+import { useUserContext } from '../../context/context';
+import { useGetUserSWR } from "../../hooks/hooks";
 
 export function Company() {
+  const { userId } = useUserContext();
+  const { dataSWR, error, loading } = useGetUserSWR(userId.id);
+
   return (
     <div
-      style={style}
+      style={{
+        ...style,
+        borderBottom: '1px dashed black',
+      }}
     >
       <div
-        style={{
-          backgroundColor: 'grey',
-          width: '50%',
-          height: '100%'
-        }}
+        style={firstColumn}
       >Company</div>
-      <div>name</div>
+      {(!error && !loading) && (
+        <div>{dataSWR?.data[0]?.company?.name}</div>
+      )}
     </div>
   )
 }

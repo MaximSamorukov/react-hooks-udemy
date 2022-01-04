@@ -35,7 +35,7 @@ export function Controlls() {
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'row',
-        marginTop: '5px',
+        marginTop: '25px',
         paddingTop: '3px',
         boxSizing: 'border-box',
       }}

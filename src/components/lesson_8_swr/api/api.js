@@ -1,4 +1,5 @@
 import axios from 'axios';
+import useSWR from 'swr';
 
 const URL = 'https://jsonplaceholder.typicode.com';
 
@@ -14,4 +15,13 @@ function fetcher(target) {
   return result;
 }
 
-export { fetch, fetcher };
+
+function useSWRFetcher(target) {
+  const { data, error } = useSWR(target, fetcher);
+  return {
+    data,
+    error,
+    loading: !data && !error,
+  };
+}
+export { fetch, fetcher, useSWRFetcher };

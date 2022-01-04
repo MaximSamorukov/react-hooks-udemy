@@ -1,20 +1,22 @@
 import React from 'react';
-import { style } from './style';
-
+import { style, firstColumn } from './style';
+import { useUserContext } from '../../context/context';
+import { useGetUserSWR } from "../../hooks/hooks";
 
 export function Phone() {
+  const { userId } = useUserContext();
+  const { dataSWR, error, loading } = useGetUserSWR(userId.id);
+
   return (
     <div
       style={style}
     >
       <div
-        style={{
-          backgroundColor: 'grey',
-          width: '50%',
-          height: '100%'
-        }}
+        style={firstColumn}
       >Phone</div>
-      <div>url</div>
+      {(!error && !loading) && (
+        <div>{dataSWR?.data[0]?.phone}</div>
+      )}
     </div>
   )
 }

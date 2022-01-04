@@ -37,7 +37,7 @@ export function Address() {
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [lngValue, latValue],
+      center: {lng: normalizeLng(lngValue), lat:normalizeLat(latValue)},
       zoom: zoom,
     });
   });

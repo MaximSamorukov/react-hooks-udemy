@@ -13,6 +13,7 @@ import {
 } from './lessons_components';
 import MainComponent from "./lesson_8/components/MainLayout";
 import MainComponentSWR from "./lesson_8_swr/components/MainLayout";
+import MainComponentQuery from "./lesson_8_react_query/components/MainLayout";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
         <Link style={{ marginRight: 20 }} to="/">Lessons 1 - 5</Link>
         <Link style={{ marginRight: 20 }} to="/lesson_6">Lesson 6</Link>
         <Link style={{ marginRight: 20 }} to="/lesson_8">Lesson 8</Link>
-        <Link to="/lesson_8_swr">Lesson 8 SWR</Link>
+        <Link style={{ marginRight: 20 }} to="/lesson_8_swr">Lesson 8 SWR</Link>
+        <Link to="/lesson_8_react_query">Lesson 8 React Query</Link>
       </nav>
       <Routes>
         <Route path="/" element={(
@@ -96,6 +98,19 @@ function App() {
               }}
             >
               <MainComponentSWR />
+            </div>
+          </div>
+        )} />
+        <Route path="/lesson_8_react_query" element={(
+          <div className="app">
+            <div
+              style={{
+                width: '100%',
+                marginRight: '10px',
+                marginLeft: '10px',
+              }}
+            >
+              <MainComponentQuery />
             </div>
           </div>
         )} />

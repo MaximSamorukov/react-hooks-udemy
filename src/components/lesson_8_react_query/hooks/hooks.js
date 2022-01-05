@@ -47,7 +47,7 @@ export function useGetUser(id) {
   };
 }
 
-export function useGetUserSWR(id) {
+export function useGetUserReactQuery(id) {
 
   const { data, error } = useSWR(`users?id=${id}`, fetcher);
 

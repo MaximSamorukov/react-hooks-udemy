@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { styleAddress } from './style';
 import { useUserContext } from '../../context/context';
-import { useGetUserSWR } from "../../hooks/hooks";
+import { useGetUserReactQuery } from "../../hooks/hooks";
 mapboxgl.accessToken = 'pk.eyJ1IjoibWFrc2ltc2Ftb3J1a292IiwiYSI6ImNreTBjM250djAwODQydXF0aDZmbjM1dXMifQ.Yav-_jmEwKRxWpfWpsDEGg';
 
 const normalizeLng = (value) => {
@@ -23,7 +23,7 @@ export function Address() {
   const [lngValue, setLng] = useState(0);
   const [zoom] = useState(2);
   const { userId } = useUserContext();
-  const { dataSWR, error, loading } = useGetUserSWR(userId.id);
+  const { dataSWR, error, loading } = useGetUserReactQuery(userId.id);
 
   const marker = useMemo(() => new mapboxgl.Marker({
     color: "#B8B8B8",

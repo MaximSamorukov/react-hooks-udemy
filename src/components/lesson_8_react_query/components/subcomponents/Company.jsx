@@ -1,11 +1,11 @@
 import React from 'react';
 import { style, firstColumn } from './style';
 import { useUserContext } from '../../context/context';
-import { useGetUserSWR } from "../../hooks/hooks";
+import { useGetUserReactQuery } from "../../hooks/hooks";
 
 export function Company() {
   const { userId } = useUserContext();
-  const { dataSWR, error, loading } = useGetUserSWR(userId.id);
+  const { dataSWR, error, loading } = useGetUserReactQuery(userId.id);
 
   return (
     <div

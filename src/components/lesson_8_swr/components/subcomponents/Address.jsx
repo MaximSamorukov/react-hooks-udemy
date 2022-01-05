@@ -45,7 +45,7 @@ export function Address() {
   useEffect(() => {
     map.current.setCenter({lng: lngValue, lat:latValue});
     marker
-      .setLngLat({lng: lngValue, lat:latValue})
+      .setLngLat({lng: lngValue, lat: latValue})
       .addTo(map.current);
     return () => {
       marker.remove();

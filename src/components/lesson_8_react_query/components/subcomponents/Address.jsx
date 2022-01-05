@@ -5,25 +5,12 @@ import { useUserContext } from '../../context/context';
 import { useGetUserReactQuery } from "../../hooks/hooks";
 mapboxgl.accessToken = 'pk.eyJ1IjoibWFrc2ltc2Ftb3J1a292IiwiYSI6ImNreTBjM250djAwODQydXF0aDZmbjM1dXMifQ.Yav-_jmEwKRxWpfWpsDEGg';
 
-const normalizeLng = (value) => {
-  if ((value) < -90 || (value) > 90) {
-    return value % 90;
-  }
-  return value;
-}
-const normalizeLat = (value) => {
-  if ((value) < -90 || (value) > 90) {
-    return value % 90;
-  }
-  return value;
-}
-
 export function Address() {
   const [latValue, setLat] = useState(0);
   const [lngValue, setLng] = useState(0);
   const [zoom] = useState(2);
   const { userId } = useUserContext();
-  const { dataSWR, error, loading } = useGetUserReactQuery(userId.id);
+  const { dataReactQuery, error, loading } = useGetUserReactQuery(userId.id);
 
   const marker = useMemo(() => new mapboxgl.Marker({
     color: "#B8B8B8",
@@ -54,12 +41,12 @@ export function Address() {
 
   useEffect(() => {
     if (!error && !loading) {
-      const values = dataSWR?.data[0]?.address?.geo;
+      const values = dataReactQuery?.data[0]?.address?.geo;
       const { lat = 0, lng = 0 } = values || {};
       setLat(Number(lat) || 0);
       setLng(Number(lng) || 0);
     }
-  }, [loading, error, dataSWR]);
+  }, [loading, error, dataReactQuery]);
 
   return (
     <div

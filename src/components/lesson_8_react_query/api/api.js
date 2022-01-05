@@ -10,7 +10,8 @@ function fetch(target) {
 }
 
 function fetcher(target) {
-  const url = `${URL}/${target}`;
+  const key = target.queryKey[0];
+  const url = `${URL}/${key}`;
   const result = axios.get(url);
   return result;
 }

@@ -5,7 +5,7 @@ import { useGetUserReactQuery } from "../../hooks/hooks";
 
 export function Email() {
   const { userId } = useUserContext();
-  const { dataSWR, error, loading } = useGetUserReactQuery(userId.id);
+  const { dataReactQuery, error, loading } = useGetUserReactQuery(userId.id);
 
   return (
     <div
@@ -15,7 +15,7 @@ export function Email() {
         style={firstColumn}
       >Email</div>
       {(!error && !loading) && (
-        <div>{dataSWR?.data[0]?.email}</div>
+        <div>{dataReactQuery?.data[0]?.email}</div>
       )}
     </div>
   )

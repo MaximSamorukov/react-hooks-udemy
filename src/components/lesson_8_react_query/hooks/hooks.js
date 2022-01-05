@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { useEffect } from "react/cjs/react.development";
 import { fetch, fetcher } from "components/lesson_8_react_query/api/api";
-import useSWR from "swr";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+} from 'react-query';
 
 export function useUsers() {
 
@@ -49,10 +53,10 @@ export function useGetUser(id) {
 
 export function useGetUserReactQuery(id) {
 
-  const { data, error } = useSWR(`users?id=${id}`, fetcher);
+  const { data, error } = useQuery(`users?id=${id}`, fetcher);
 
   return {
-    dataSWR: data,
+    dataReactQuery: data,
     loading: !data && !error,
     error,
   };

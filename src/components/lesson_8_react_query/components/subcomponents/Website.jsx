@@ -5,7 +5,7 @@ import { useGetUserReactQuery } from "../../hooks/hooks";
 
 export function Website() {
   const { userId } = useUserContext();
-  const { dataSWR, error, loading } = useGetUserReactQuery(userId.id);
+  const { dataReactQuery, error, loading } = useGetUserReactQuery(userId.id);
 
   return (
     <div
@@ -15,7 +15,7 @@ export function Website() {
         style={firstColumn}
       >Website</div>
       {(!error && !loading) && (
-        <div>{dataSWR?.data[0]?.website}</div>
+        <div>{dataReactQuery?.data[0]?.website}</div>
       )}
     </div>
   )

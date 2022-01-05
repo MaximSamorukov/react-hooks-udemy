@@ -5,7 +5,7 @@ import { useGetUserReactQuery } from "../../hooks/hooks";
 
 export function Company() {
   const { userId } = useUserContext();
-  const { dataSWR, error, loading } = useGetUserReactQuery(userId.id);
+  const { dataReactQuery, error, loading } = useGetUserReactQuery(userId.id);
 
   return (
     <div
@@ -18,7 +18,7 @@ export function Company() {
         style={firstColumn}
       >Company</div>
       {(!error && !loading) && (
-        <div>{dataSWR?.data[0]?.company?.name}</div>
+        <div>{dataReactQuery?.data[0]?.company?.name}</div>
       )}
     </div>
   )

@@ -1,10 +1,14 @@
 import React, { useEffect, createContext, useContext } from "react";
 import { useUsers, useUsersList, useUser } from "../hooks/hooks";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query';
 
 const UsersContext = createContext();
 const ListContext = createContext();
 const UserContext = createContext();
-
+const queryClient = new QueryClient();
 export function useUserContext() {
   return useContext(UserContext);
 }
@@ -32,7 +36,9 @@ export function UserContextProvider({ children }) {
     <ListContext.Provider value={list}>
       <UsersContext.Provider value={users}>
         <UserContext.Provider value={{ userId, setUserId }}>
-          {children}
+          <QueryClientProvider client={queryClient}>
+            {children}
+          </QueryClientProvider>
         </UserContext.Provider>
       </UsersContext.Provider>
     </ListContext.Provider>
